@@ -1,0 +1,72 @@
+body{
+    background-color: rgb(183, 255, 241);
+}
+*{
+    margin: 0;padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: sans-serif;
+}
+.container{
+    position: relative;
+    overflow: hidden;
+    width: 700px;
+    margin: 0 auto;
+    height: 100vh;
+    background-color: grey;
+    border-left: 5px solid;
+    border-right: 5px solid;
+}
+.DivImg{
+    width: 300px;
+    position: absolute;
+    left: 200px;
+    bottom: 150px;
+}
+.car{
+    transform: rotate(-90deg);
+}
+.orta{
+    width: 20px;
+    margin: 10px auto;
+    height: 120px;
+    background-color: white;
+}
+.pos{
+    position: absolute;
+    bottom: 100px;
+    right: 0;
+}
+.pos2{
+    position: absolute;
+    bottom: 100px;
+}
+.btn{
+    padding: 10px 20px;
+    background-color: rgb(183, 255, 241);
+    font-size: 25px;
+    border-radius: 15px;
+}
+.btn:hover{
+    cursor: pointer;
+}
+.center{
+    width: 410px;
+    text-align: center;
+    padding: 20px;
+}
+.petrol{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 35px;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+.toldirish{
+    padding: 10px 20px;
+    background-color: rgb(183, 255, 241);
+    font-size: 25px;
+    border-radius: 15px;
+}
