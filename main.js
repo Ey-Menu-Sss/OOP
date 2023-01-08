@@ -87,7 +87,7 @@ class naruto {
             })
           }
         }
-      }, 100);
+      }, 2000);
     } else if (this.ochirish) {
       jj = false;
       aa = false;
