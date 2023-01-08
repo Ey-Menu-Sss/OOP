@@ -14,25 +14,7 @@ let jj = false;
 let aa = false;
 let hisoblagich = 30;
 p.textContent = hisoblagich;
-setInterval(() => {
-  if (aa) {
-    hisoblagich--;
-    p.textContent = hisoblagich;
-    if (hisoblagich <= 0) {
-      aa = false;
-      jj = false;
-    }
-  }
-}, 2000);
-setInterval(() => {
-  if (jj) {
-    a += 5;
-    liniya.style.marginTop = `${a}px`;
-    if (a >= 0) {
-      a = -500;
-    }
-  }
-}, 10);
+let kere = false;
 
 let tStop = document.querySelector(".textStop");
 let tMove = document.querySelector(".textMove");
@@ -70,17 +52,42 @@ class naruto {
       tStop.textContent = "";
       jj = true;
       aa = true;
-      setInterval(() => {
-        if (hisoblagich == 0) {
-          tMove.textContent = "moshinani benzini tugadi iltimos to'ldiring";
-        }
+      if(this.yurish && !this.toxtash){
         toldirish.addEventListener("click", () => {
-          tMove.textContent = "moshina yurdi";
-          jj = true;
-          aa = true;
-        });
+          tMove.textContent = "oldin toxtang"
+        })
+      }
+      setInterval(() => {
+        if (aa) {
+          hisoblagich--;
+          p.textContent = hisoblagich;
+          if (hisoblagich <= 0) {
+            jj = false
+            aa = false
+            // this.yurish = false
+            this.yurish = false
+            this.fochirish()
+            tStop.textContent = ""
+            setTimeout(() => {
+              alert("benzin tugadi iltimos to'ldiring!!!")
+            }, 100);
+            for(let i = 1; i <= 4; i++){
+              let btn = document.querySelector(`.b${i}`)
+              btn.style.visibility = "hidden"
+              toldirish.addEventListener("click", () => {
+                btn.style.visibility = "visible"
+              })
+            }
+          }
+          if(hisoblagich === 0){
+            toldirish.addEventListener("click", () => {
+              tMove.textContent = "benzin to'ldi yurishingiz mumkun"
+              hisoblagich = 30
+              p.textContent = hisoblagich
+            })
+          }
+        }
       }, 100);
-      return console.log("moshina yurdi");
     } else if (this.ochirish) {
       jj = false;
       aa = false;
@@ -97,6 +104,13 @@ class naruto {
       tMove.textContent = "";
       jj = false;
       aa = false;
+      if(this.toxtash){
+        toldirish.addEventListener("click", () => {
+          tMove.textContent = "benzin to'ldi yurishingiz mumkun"
+          hisoblagich = 30;
+          p.textContent = hisoblagich
+        })
+      }
       return console.log("moshina toxtadi");
     } else if (!this.zavat) {
       tStop.textContent = "moshina hali zavad qilinmagan va yurmayapti yam";
@@ -129,9 +143,32 @@ class naruto {
     tMove.textContent = "";
     console.log("moshina o'chirildi");
   }
+  asdf(){
+    if(kere){
+      hisoblagich = 30
+    }
+  }
 }
 
 let car = new naruto("tesla", "tesla");
+
+
+setInterval(() => {
+  if (jj) {
+    a += 5;
+    liniya.style.marginTop = `${a}px`;
+    if (a >= 0) {
+      a = -500;
+    }
+  }
+}, 10);
+
+
+
+
+
+
+
 
 zavat.addEventListener("click", () => {
   car.fzavat();
@@ -144,8 +181,4 @@ toxtash.addEventListener("click", () => {
 });
 ochirish.addEventListener("click", () => {
   car.fochirish();
-});
-toldirish.addEventListener("click", () => {
-  aa = true;
-  hisoblagich = 30;
 });
