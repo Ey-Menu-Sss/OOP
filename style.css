@@ -46,6 +46,7 @@ body{
     background-color: rgb(183, 255, 241);
     font-size: 25px;
     border-radius: 15px;
+    visibility: visible;
 }
 .btn:hover{
     cursor: pointer;
