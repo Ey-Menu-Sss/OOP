@@ -17,14 +17,12 @@ body{
     border-left: 5px solid;
     border-right: 5px solid;
 }
-.DivImg{
+.car{
+    transform: rotate(-90deg);
     width: 300px;
     position: absolute;
     left: 200px;
     bottom: 150px;
-}
-.car{
-    transform: rotate(-90deg);
 }
 .orta{
     width: 20px;
@@ -70,4 +68,25 @@ body{
     background-color: rgb(183, 255, 241);
     font-size: 25px;
     border-radius: 15px;
+}
+
+.tugash{
+    position: absolute;
+    left: 120px;
+    top: 0;
+    color: red;
+    font-size: 30px;
+}
+.dopalnitelniy{
+    animation-name: warning;
+    animation-duration: .6s;
+    animation-iteration-count: infinite;
+}
+@keyframes warning {
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
 }
