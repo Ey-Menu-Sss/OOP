@@ -1,14 +1,11 @@
 let liniya = document.querySelector(".liniya");
-
 for (let i = 1; i <= 10; i++) {
   let orta = document.createElement("div");
   orta.className = "orta";
   liniya.appendChild(orta);
 }
-
 let p = document.querySelector(".p");
 let toldirish = document.querySelector(".toldirish");
-
 liniya.style.marginTop = "-500px";
 let a = -500;
 let jj = false;
@@ -16,14 +13,15 @@ let aa = false;
 let hisoblagich = 30;
 p.textContent = hisoblagich;
 let kere = false;
-
 let tStop = document.querySelector(".textStop");
 let tMove = document.querySelector(".textMove");
 let toxtash = document.querySelector(".toxtash");
 let ochirish = document.querySelector(".ochirish");
 let zavat = document.querySelector(".zavat");
 let yurish = document.querySelector(".yurish");
-
+let tugash = document.querySelector(".tugash")
+tugash.style.display = "none"
+tugash.classList.add("dopalnitelniy")
 class naruto {
   constructor(model, company) {
     this.model = model;
@@ -46,10 +44,16 @@ class naruto {
       tStop.textContent = "";
       return console.log("zavad qilindi");
     }
+    else if(this.toxtash){
+      tMove.textContent = "Itak zavat qilingan";
+      tStop.textContent = "";
+      return console.log("itak zavad qilingan");
+    }
   }
   fyurish() {
     if (this.zavat) {
       this.yurish = true;
+      this.toxtash = false
       tMove.textContent = "moshina yurdi";
       tStop.textContent = "";
       jj = true;
@@ -58,11 +62,14 @@ class naruto {
         toldirish.addEventListener("click", () => {
           tMove.textContent = "oldin toxtang"
         })
+        yurish.addEventListener("click", () => {
+          tMove.textContent = "moshina itak yurvotti"
+        })
       } 
     } else if (this.ochirish) {
       jj = false;
       aa = false;
-      tMove.textContent = "ondin moshnani zavat qiling";
+      tMove.textContent = "oldin moshnani zavat qiling";
       tStop.textContent = "";
       return console.log("oldin moshinani zavad qiling");
     }
@@ -77,9 +84,12 @@ class naruto {
       aa = false;
       if(this.toxtash){
         toldirish.addEventListener("click", () => {
+          if(!this.yurish){
           tMove.textContent = "benzin to'ldi yurishingiz mumkun"
           hisoblagich = 30;
           p.textContent = hisoblagich
+          tugash.style.display = "none"
+          }
         })
       }
       return console.log("moshina toxtadi");
@@ -121,29 +131,33 @@ setInterval(() => {
   if (aa) {
     hisoblagich--;
     p.textContent = hisoblagich;
-    if (hisoblagich <= 0) {
+    if(hisoblagich === 8){
+      console.log("mda");
+      tugash.style.display = "block"
+    }
+    else if(hisoblagich === 0){
+      tMove.textContent = ""
+      toldirish.addEventListener("click", () => {
+        tMove.textContent = "benzin to'ldi yurishingiz mumkun"
+        hisoblagich = 30
+        p.textContent = hisoblagich
+      })
       jj = false
       aa = false
       // this.yurish = false
       car.yurish = false
       car.fochirish()
       tStop.textContent = ""
-      setTimeout(() => {
-        alert("benzin tugadi iltimos to'ldiring!!!")
-      }, 100);
+      tugash.textContent = "benzin tugadi iltimos to'ldiring!!!"
+      tugash.classList.remove("dopalnitelniy")
+      tugash.style.fontSize = "45px"
+      tugash.style.left = "30px"
       for(let i = 1; i <= 4; i++){
         let btn = document.querySelector(`.b${i}`)
         btn.style.visibility = "hidden"
         toldirish.addEventListener("click", () => {
           btn.style.visibility = "visible"
-        })
-      }
-      if(hisoblagich === 0){
-        tMove.textContent = ""
-        toldirish.addEventListener("click", () => {
-          tMove.textContent = "benzin to'ldi yurishingiz mumkun"
-          hisoblagich = 30
-          p.textContent = hisoblagich
+          tugash.style.display = "none"
         })
       }
     }
