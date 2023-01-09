@@ -1,4 +1,5 @@
 let liniya = document.querySelector(".liniya");
+
 for (let i = 1; i <= 10; i++) {
   let orta = document.createElement("div");
   orta.className = "orta";
@@ -33,6 +34,7 @@ class naruto {
     this.ochirish = true;
   }
   fzavat() {
+    kere = true
     if (this.yurish) {
       tMove.textContent = "Itak zavat qilingan";
       tStop.textContent = "";
@@ -56,38 +58,7 @@ class naruto {
         toldirish.addEventListener("click", () => {
           tMove.textContent = "oldin toxtang"
         })
-      }
-      setInterval(() => {
-        if (aa) {
-          hisoblagich--;
-          p.textContent = hisoblagich;
-          if (hisoblagich <= 0) {
-            jj = false
-            aa = false
-            // this.yurish = false
-            this.yurish = false
-            this.fochirish()
-            tStop.textContent = ""
-            setTimeout(() => {
-              alert("benzin tugadi iltimos to'ldiring!!!")
-            }, 100);
-            for(let i = 1; i <= 4; i++){
-              let btn = document.querySelector(`.b${i}`)
-              btn.style.visibility = "hidden"
-              toldirish.addEventListener("click", () => {
-                btn.style.visibility = "visible"
-              })
-            }
-          }
-          if(hisoblagich === 0){
-            toldirish.addEventListener("click", () => {
-              tMove.textContent = "benzin to'ldi yurishingiz mumkun"
-              hisoblagich = 30
-              p.textContent = hisoblagich
-            })
-          }
-        }
-      }, 2000);
+      } 
     } else if (this.ochirish) {
       jj = false;
       aa = false;
@@ -135,24 +106,50 @@ class naruto {
       tStop.textContent = "oldin toxtang";
       tMove.textContent = "";
       return console.log("oldin toxtang!");
-    }
-
-    this.ochirish = true;
-    this.zavat = false;
-    tStop.textContent = "moshina ochirildi";
-    tMove.textContent = "";
-    console.log("moshina o'chirildi");
-  }
-  asdf(){
-    if(kere){
-      hisoblagich = 30
+    }else if(this.toxtash){
+      this.ochirish = true
+      this.toxtash = false
+      this.zavat = false;
+      tStop.textContent = "moshina ochirildi";
+      tMove.textContent = "";
+      console.log("moshina o'chirildi");
     }
   }
 }
-
 let car = new naruto("tesla", "tesla");
-
-
+setInterval(() => {
+  if (aa) {
+    hisoblagich--;
+    p.textContent = hisoblagich;
+    if (hisoblagich <= 0) {
+      jj = false
+      aa = false
+      // this.yurish = false
+      car.yurish = false
+      car.fochirish()
+      tStop.textContent = ""
+      setTimeout(() => {
+        alert("benzin tugadi iltimos to'ldiring!!!")
+      }, 100);
+      for(let i = 1; i <= 4; i++){
+        let btn = document.querySelector(`.b${i}`)
+        btn.style.visibility = "hidden"
+        toldirish.addEventListener("click", () => {
+          btn.style.visibility = "visible"
+        })
+      }
+      if(hisoblagich === 0){
+        tMove.textContent = ""
+        toldirish.addEventListener("click", () => {
+          tMove.textContent = "benzin to'ldi yurishingiz mumkun"
+          hisoblagich = 30
+          p.textContent = hisoblagich
+        })
+      }
+    }
+  }
+}, 1000);
+// oradi yer yurishi
 setInterval(() => {
   if (jj) {
     a += 5;
@@ -162,14 +159,7 @@ setInterval(() => {
     }
   }
 }, 10);
-
-
-
-
-
-
-
-
+// knopkala bosilishi
 zavat.addEventListener("click", () => {
   car.fzavat();
 });
